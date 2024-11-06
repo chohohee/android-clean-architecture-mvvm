@@ -18,3 +18,4 @@ dependencyResolutionManagement {
 rootProject.name = "CleanArchitectureMVVM"
 include(":app")
 include(":presentation")
+include(":domain")
