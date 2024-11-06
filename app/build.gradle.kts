@@ -17,6 +17,7 @@ dependencies {
     implementation(projects.domain)
     implementation(projects.data)
     implementation(projects.remote)
+    implementation(projects.local)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
