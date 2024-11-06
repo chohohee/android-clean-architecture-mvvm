@@ -1,23 +1,18 @@
 plugins {
-    id("chh.android.application")
+    id("chh.android.library")
 }
 
 android {
-    namespace = "com.chh.cleanarchitecture"
-
-    defaultConfig {
-        applicationId = "com.chh.cleanarchitecture"
-        versionCode = 1
-        versionName = "1.0"
-    }
+    namespace = "com.chh.cleanarchitecture.presentation"
 }
 
 dependencies {
-    implementation(projects.presentation)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
