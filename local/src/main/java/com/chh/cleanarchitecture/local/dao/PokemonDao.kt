@@ -13,6 +13,6 @@ interface PokemonDao {
     suspend fun insertAll(pokemon: List<PokemonEntity>)
 
     @Query("SELECT * FROM pokemon LIMIT :limit OFFSET :offset ")
-    suspend fun getPokemon(limit: Int, offset: Int): List<PokemonEntity>
+    suspend fun getPokemonList(limit: Int, offset: Int): List<PokemonEntity>
 
 }
