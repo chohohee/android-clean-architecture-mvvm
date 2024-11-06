@@ -10,6 +10,8 @@ internal class DefaultPokemonLocalDataSource @Inject constructor(
     private val pokemonDao: PokemonDao
 ) : PokemonLocalDataSource {
 
+    override suspend fun getPokemonCount(): Int = pokemonDao.getPokemonCount()
+
     override suspend fun insertAll(pokemon: List<PokemonData>) {
         pokemonDao.insertAll(pokemon.map(PokemonEntityMapper::toEntity))
     }

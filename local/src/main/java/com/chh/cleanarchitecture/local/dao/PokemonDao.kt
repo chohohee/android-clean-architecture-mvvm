@@ -9,6 +9,9 @@ import com.chh.cleanarchitecture.local.model.PokemonEntity
 @Dao
 interface PokemonDao {
 
+    @Query("SELECT COUNT(*) FROM pokemon")
+    suspend fun getPokemonCount(): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(pokemon: List<PokemonEntity>)
 
