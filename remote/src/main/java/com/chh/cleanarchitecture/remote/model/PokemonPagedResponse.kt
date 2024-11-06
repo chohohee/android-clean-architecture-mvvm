@@ -17,6 +17,6 @@ internal data class PokemonPagedResponse(
             count = this.count,
             next = this.next,
             previous = this.previous,
-            results = this.results.map { it.toData() }
+            results = this.results.map(PokemonResponse::toData)
         )
 }
