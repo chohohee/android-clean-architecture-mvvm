@@ -13,5 +13,9 @@ gradlePlugin {
             id = "chh.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
+        register("androidLibrary") {
+            id = "chh.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
+        }
     }
 }
