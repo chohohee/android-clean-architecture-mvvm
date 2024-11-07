@@ -1,6 +1,5 @@
 package com.chh.cleanarchitecture.data.repository
 
-import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -16,7 +15,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-@OptIn(ExperimentalPagingApi::class)
 internal class DefaultPokemonRepository @Inject constructor(
     private val local: PokemonLocalDataSource,
     private val remote: PokemonRemoteDataSource,

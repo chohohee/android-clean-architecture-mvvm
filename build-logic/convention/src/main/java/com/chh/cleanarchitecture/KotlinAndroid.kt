@@ -46,6 +46,11 @@ internal fun Project.configureKotlin() {
 
             val warningsAsErrors: String? by project
             allWarningsAsErrors.set(warningsAsErrors.toBoolean())
+            freeCompilerArgs.set(
+                freeCompilerArgs.get() + listOf(
+                    "-opt-in=androidx.paging.ExperimentalPagingApi",
+                )
+            )
         }
     }
 }

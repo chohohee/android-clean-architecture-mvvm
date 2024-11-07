@@ -1,6 +1,5 @@
 package com.chh.cleanarchitecture.data.paging
 
-import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
@@ -10,7 +9,6 @@ import com.chh.cleanarchitecture.data.source.PokemonRemoteDataSource
 import javax.inject.Inject
 import com.chh.cleanarchitecture.data.util.Result
 
-@OptIn(ExperimentalPagingApi::class)
 internal class PokemonRemoteMediator @Inject constructor(
     private val local: PokemonLocalDataSource,
     private val remote: PokemonRemoteDataSource
