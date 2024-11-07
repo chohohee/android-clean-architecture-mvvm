@@ -16,7 +16,6 @@ androidxPaging = "3.3.2"
 retrofit = "2.11.0"
 kotlinxSerializationJson = "1.7.3"
 okhttp = "4.12.0"
-coroutine = "1.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,7 +41,6 @@ retrofit-kotlin-serialization = { module = "com.squareup.retrofit2:converter-kot
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 inject = "javax.inject:javax.inject:1"
-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
