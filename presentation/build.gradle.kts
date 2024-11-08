@@ -1,6 +1,7 @@
 plugins {
     id("chh.android.library")
     id("chh.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
