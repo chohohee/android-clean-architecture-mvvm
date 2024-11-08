@@ -3,6 +3,7 @@ package com.chh.cleanarchitecture.remote.source
 import com.chh.cleanarchitecture.data.model.PokemonInfoData
 import com.chh.cleanarchitecture.data.model.PokemonNameData
 import com.chh.cleanarchitecture.data.model.PokemonPagedData
+import com.chh.cleanarchitecture.data.model.PokemonTypeData
 import com.chh.cleanarchitecture.data.source.PokemonRemoteDataSource
 import com.chh.cleanarchitecture.remote.api.PokemonApi
 import javax.inject.Inject
@@ -26,5 +27,10 @@ internal class DefaultPokemonRemoteDataSource @Inject constructor(
     override suspend fun fetchPokemonInfo(name: String): Result<PokemonInfoData> =
         safeApiCall {
             pokemonApi.fetchPokemonInfo(name).toData()
+        }
+
+    override suspend fun fetchPokemonType(url: String): Result<PokemonTypeData> =
+        safeApiCall {
+            pokemonApi.fetchPokemonType(url).toData()
         }
 }

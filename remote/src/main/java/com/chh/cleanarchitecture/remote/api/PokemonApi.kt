@@ -3,9 +3,11 @@ package com.chh.cleanarchitecture.remote.api
 import com.chh.cleanarchitecture.remote.model.PokemonInfoResponse
 import com.chh.cleanarchitecture.remote.model.PokemonNameResponse
 import com.chh.cleanarchitecture.remote.model.PokemonPagedResponse
+import com.chh.cleanarchitecture.remote.model.PokemonTypeResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 internal interface PokemonApi {
 
@@ -24,5 +26,10 @@ internal interface PokemonApi {
     suspend fun fetchPokemonInfo(
         @Path("name") name: String
     ): PokemonInfoResponse
+
+    @GET
+    suspend fun fetchPokemonType(
+        @Url name: String
+    ): PokemonTypeResponse
 
 }
