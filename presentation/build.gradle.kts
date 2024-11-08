@@ -21,6 +21,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.palette.ktx)
     implementation(libs.glide)
+    implementation(libs.lottie)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

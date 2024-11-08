@@ -1,6 +1,7 @@
 package com.chh.cleanarchitecture.presentation.ui.pokemon
 
 import androidx.fragment.app.viewModels
+import androidx.paging.CombinedLoadStates
 import com.chh.cleanarchitecture.presentation.R
 import com.chh.cleanarchitecture.presentation.databinding.FragmentPokemonBinding
 import com.chh.cleanarchitecture.presentation.ui.adapter.PokemonPagingAdapter
@@ -16,13 +17,21 @@ class PokemonFragment : BaseFragment<FragmentPokemonBinding>(R.layout.fragment_p
 
     private val pokemonAdapter by lazy { PokemonPagingAdapter() }
 
+    private val loadStateListener: (CombinedLoadStates) -> Unit =
+        { viewModel.onLoadStateUpdate(it) }
+
     override fun initView() {
         with(binding) {
             vm = viewModel
             adapter = pokemonAdapter
         }
 
+        setupListener()
         observeViewModel()
+    }
+
+    private fun setupListener() {
+        pokemonAdapter.addLoadStateListener(loadStateListener)
     }
 
     private fun observeViewModel() = with(viewModel) {
