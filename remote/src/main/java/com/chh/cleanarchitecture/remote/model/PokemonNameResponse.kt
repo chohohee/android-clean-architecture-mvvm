@@ -14,6 +14,6 @@ internal data class PokemonNameResponse(
     override fun toData(): PokemonNameData =
         PokemonNameData(
             name = this.name,
-            names = this.names.map { it.toData() }
+            names = this.names.map(NamesResponse::toData)
         )
 }
