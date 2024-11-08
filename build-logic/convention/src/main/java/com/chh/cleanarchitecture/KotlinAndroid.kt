@@ -20,6 +20,9 @@ internal fun Project.configureKotlinAndroid() {
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
 
+        viewBinding.enable = true
+        dataBinding.enable = true
+
         compileOptions {
             sourceCompatibility = Versions.JAVA_VERSION
             targetCompatibility = Versions.JAVA_VERSION
