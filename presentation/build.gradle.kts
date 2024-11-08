@@ -19,6 +19,7 @@ dependencies {
     implementation(libs.androidx.paging.runtime)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
+    implementation(libs.androidx.palette.ktx)
     implementation(libs.glide)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

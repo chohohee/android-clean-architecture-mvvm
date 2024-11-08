@@ -33,6 +33,7 @@
             android:layout_height="0dp"
             android:layout_margin="5dp"
             android:scaleType="centerInside"
+            app:background="@{background}"
             app:image="@{pokemon.thumbnailUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
