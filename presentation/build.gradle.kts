@@ -2,6 +2,8 @@ plugins {
     id("chh.android.library")
     id("chh.hilt.android")
     id("kotlin-kapt")
+    alias(libs.plugins.navigation.safeargs)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {

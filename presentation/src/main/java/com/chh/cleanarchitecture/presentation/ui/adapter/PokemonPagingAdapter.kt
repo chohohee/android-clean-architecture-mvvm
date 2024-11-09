@@ -9,12 +9,14 @@ import com.chh.cleanarchitecture.presentation.databinding.ItemPokemonBinding
 import com.chh.cleanarchitecture.presentation.model.PokemonModel
 import com.chh.cleanarchitecture.presentation.ui.adapter.holder.PokemonViewHolder
 
-class PokemonPagingAdapter : PagingDataAdapter<PokemonModel, PokemonViewHolder>(UI_MODEL_COMPARATOR) {
+class PokemonPagingAdapter(
+    private val onPokemonClick: (PokemonModel) -> Unit,
+) : PagingDataAdapter<PokemonModel, PokemonViewHolder>(UI_MODEL_COMPARATOR) {
 
     override fun getItemViewType(position: Int): Int = R.layout.item_pokemon
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder =
-        PokemonViewHolder(ItemPokemonBinding.inflate(LayoutInflater.from(parent.context), parent,false))
+        PokemonViewHolder(ItemPokemonBinding.inflate(LayoutInflater.from(parent.context), parent,false), onPokemonClick)
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
         val item = getItem(position) ?: return
