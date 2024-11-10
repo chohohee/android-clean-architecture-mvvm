@@ -13,6 +13,7 @@ import com.chh.cleanarchitecture.data.util.Result
 import com.chh.cleanarchitecture.domain.model.Pokemon
 import com.chh.cleanarchitecture.domain.model.PokemonInfo
 import com.chh.cleanarchitecture.domain.model.PokemonName
+import com.chh.cleanarchitecture.domain.model.PokemonType
 import com.chh.cleanarchitecture.domain.repository.PokemonRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -70,6 +71,23 @@ internal class DefaultPokemonRepository @Inject constructor(
                 val pokemonInfoData = result.data
                 local.insertPokemonInfo(pokemonInfoData)
                 return pokemonInfoData.toDomain()
+            }
+
+            is Result.Error -> error("network error")
+        }
+    }
+
+    override suspend fun getPokemonType(type: PokemonInfo.Type): PokemonType {
+        val pokemonType = local.getPokemonType(type.name)
+        if (pokemonType != null) {
+            return pokemonType.toDomain()
+        }
+
+        when (val result = remote.fetchPokemonType(type.url)) {
+            is Result.Success -> {
+                val pokemonTypeData = result.data
+                local.insertPokemonType(pokemonTypeData)
+                return pokemonTypeData.toDomain()
             }
 
             is Result.Error -> error("network error")

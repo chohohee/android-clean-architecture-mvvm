@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import com.chh.cleanarchitecture.domain.model.Pokemon
 import com.chh.cleanarchitecture.domain.model.PokemonInfo
 import com.chh.cleanarchitecture.domain.model.PokemonName
+import com.chh.cleanarchitecture.domain.model.PokemonType
 import kotlinx.coroutines.flow.Flow
 
 interface PokemonRepository {
@@ -13,5 +14,7 @@ interface PokemonRepository {
     suspend fun getPokemonName(name: String): PokemonName
 
     suspend fun getPokemonInfo(name: String): PokemonInfo
+
+    suspend fun getPokemonType(type: PokemonInfo.Type): PokemonType
 
 }
