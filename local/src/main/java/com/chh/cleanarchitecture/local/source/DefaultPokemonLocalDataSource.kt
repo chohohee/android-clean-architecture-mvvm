@@ -1,13 +1,18 @@
 package com.chh.cleanarchitecture.local.source
 
 import com.chh.cleanarchitecture.data.model.PokemonData
+import com.chh.cleanarchitecture.data.model.PokemonNameData
 import com.chh.cleanarchitecture.data.source.PokemonLocalDataSource
 import com.chh.cleanarchitecture.local.dao.PokemonDao
+import com.chh.cleanarchitecture.local.dao.PokemonNameDao
 import com.chh.cleanarchitecture.local.mapper.PokemonEntityMapper
+import com.chh.cleanarchitecture.local.mapper.toData
+import com.chh.cleanarchitecture.local.mapper.toEntity
 import javax.inject.Inject
 
 internal class DefaultPokemonLocalDataSource @Inject constructor(
-    private val pokemonDao: PokemonDao
+    private val pokemonDao: PokemonDao,
+    private val pokemonNameDao: PokemonNameDao
 ) : PokemonLocalDataSource {
 
     override suspend fun getPokemonCount(): Int = pokemonDao.getPokemonCount()
@@ -18,5 +23,12 @@ internal class DefaultPokemonLocalDataSource @Inject constructor(
 
     override suspend fun getPokemonList(limit: Int, offset: Int): List<PokemonData> =
         pokemonDao.getPokemonList(limit, offset).map(PokemonEntityMapper::toData)
+
+    override suspend fun getPokemonName(name: String): PokemonNameData? =
+        pokemonNameDao.getPokemonName(name)?.toData()
+
+    override suspend fun insertPokemonName(name: PokemonNameData) {
+        pokemonNameDao.insertPokemonName(name.toEntity())
+    }
 
 }
