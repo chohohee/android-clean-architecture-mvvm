@@ -1,6 +1,7 @@
 package com.chh.cleanarchitecture.local.di
 
 import com.chh.cleanarchitecture.local.dao.PokemonDao
+import com.chh.cleanarchitecture.local.dao.PokemonNameDao
 import com.chh.cleanarchitecture.local.database.PokemonDatabase
 import dagger.Module
 import dagger.Provides
@@ -15,5 +16,9 @@ internal object DaoModule {
     @Provides
     @Singleton
     fun providePokemonDao(database: PokemonDatabase): PokemonDao = database.pokemonDao()
+
+    @Provides
+    @Singleton
+    fun providePokemonNameDao(database: PokemonDatabase): PokemonNameDao = database.pokemonNameDao()
 
 }
