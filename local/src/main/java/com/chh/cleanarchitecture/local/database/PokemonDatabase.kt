@@ -6,14 +6,17 @@ import androidx.room.TypeConverters
 import com.chh.cleanarchitecture.local.converter.NameDataConverter
 import com.chh.cleanarchitecture.local.converter.TypeDataConverter
 import com.chh.cleanarchitecture.local.dao.PokemonDao
+import com.chh.cleanarchitecture.local.dao.PokemonInfoDao
 import com.chh.cleanarchitecture.local.dao.PokemonNameDao
 import com.chh.cleanarchitecture.local.model.PokemonEntity
+import com.chh.cleanarchitecture.local.model.PokemonInfoEntity
 import com.chh.cleanarchitecture.local.model.PokemonNameEntity
 
 @Database(
     entities = [
         PokemonEntity::class,
-        PokemonNameEntity::class
+        PokemonNameEntity::class,
+        PokemonInfoEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -22,4 +25,5 @@ import com.chh.cleanarchitecture.local.model.PokemonNameEntity
 abstract class PokemonDatabase : RoomDatabase() {
     abstract fun pokemonDao(): PokemonDao
     abstract fun pokemonNameDao(): PokemonNameDao
+    abstract fun pokemonInfoDao(): PokemonInfoDao
 }
