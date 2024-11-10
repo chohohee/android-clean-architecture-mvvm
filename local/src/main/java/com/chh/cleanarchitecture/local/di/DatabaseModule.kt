@@ -3,6 +3,7 @@ package com.chh.cleanarchitecture.local.di
 import android.content.Context
 import androidx.room.Room
 import com.chh.cleanarchitecture.local.converter.NameDataConverter
+import com.chh.cleanarchitecture.local.converter.TypeDataConverter
 import com.chh.cleanarchitecture.local.database.PokemonDatabase
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -21,11 +22,13 @@ internal object DatabaseModule {
     @Singleton
     fun providePokemonDatabase(
         @ApplicationContext context: Context,
-        nameDataConverter: NameDataConverter
+        nameDataConverter: NameDataConverter,
+        typeDataConverter: TypeDataConverter
     ): PokemonDatabase {
         return Room
             .databaseBuilder(context, PokemonDatabase::class.java, "pokemon.db")
             .addTypeConverter(nameDataConverter)
+            .addTypeConverter(typeDataConverter)
             .build()
     }
 
@@ -36,5 +39,9 @@ internal object DatabaseModule {
     @Provides
     @Singleton
     fun provideNameDataConverter(moshi: Moshi): NameDataConverter = NameDataConverter(moshi)
+
+    @Provides
+    @Singleton
+    fun provideTypeDataConverter(moshi: Moshi): TypeDataConverter = TypeDataConverter(moshi)
 
 }

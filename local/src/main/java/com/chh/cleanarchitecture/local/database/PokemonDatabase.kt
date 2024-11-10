@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.chh.cleanarchitecture.local.converter.NameDataConverter
+import com.chh.cleanarchitecture.local.converter.TypeDataConverter
 import com.chh.cleanarchitecture.local.dao.PokemonDao
 import com.chh.cleanarchitecture.local.dao.PokemonNameDao
 import com.chh.cleanarchitecture.local.model.PokemonEntity
@@ -17,7 +18,7 @@ import com.chh.cleanarchitecture.local.model.PokemonNameEntity
     version = 1,
     exportSchema = false
 )
-@TypeConverters(value = [NameDataConverter::class])
+@TypeConverters(value = [NameDataConverter::class, TypeDataConverter::class])
 abstract class PokemonDatabase : RoomDatabase() {
     abstract fun pokemonDao(): PokemonDao
     abstract fun pokemonNameDao(): PokemonNameDao
