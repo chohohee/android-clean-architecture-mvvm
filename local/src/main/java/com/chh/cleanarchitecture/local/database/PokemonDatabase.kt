@@ -8,15 +8,18 @@ import com.chh.cleanarchitecture.local.converter.TypeDataConverter
 import com.chh.cleanarchitecture.local.dao.PokemonDao
 import com.chh.cleanarchitecture.local.dao.PokemonInfoDao
 import com.chh.cleanarchitecture.local.dao.PokemonNameDao
+import com.chh.cleanarchitecture.local.dao.PokemonTypeDao
 import com.chh.cleanarchitecture.local.model.PokemonEntity
 import com.chh.cleanarchitecture.local.model.PokemonInfoEntity
 import com.chh.cleanarchitecture.local.model.PokemonNameEntity
+import com.chh.cleanarchitecture.local.model.PokemonTypeEntity
 
 @Database(
     entities = [
         PokemonEntity::class,
         PokemonNameEntity::class,
-        PokemonInfoEntity::class
+        PokemonInfoEntity::class,
+        PokemonTypeEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -26,4 +29,5 @@ abstract class PokemonDatabase : RoomDatabase() {
     abstract fun pokemonDao(): PokemonDao
     abstract fun pokemonNameDao(): PokemonNameDao
     abstract fun pokemonInfoDao(): PokemonInfoDao
+    abstract fun pokemonTypeDao(): PokemonTypeDao
 }
