@@ -52,6 +52,7 @@ internal fun Project.configureKotlin() {
             freeCompilerArgs.set(
                 freeCompilerArgs.get() + listOf(
                     "-opt-in=androidx.paging.ExperimentalPagingApi",
+                    "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
                 )
             )
         }
