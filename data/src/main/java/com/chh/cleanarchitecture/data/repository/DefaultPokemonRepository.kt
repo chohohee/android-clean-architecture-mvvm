@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.chh.cleanarchitecture.data.model.PokemonData
+import com.chh.cleanarchitecture.data.model.PokemonNameData
 import com.chh.cleanarchitecture.data.paging.PokemonPagingSource
 import com.chh.cleanarchitecture.data.paging.PokemonRemoteMediator
 import com.chh.cleanarchitecture.data.source.PokemonLocalDataSource
@@ -56,7 +57,15 @@ internal class DefaultPokemonRepository @Inject constructor(
                 return pokemonNameData.toDomain()
             }
 
-            is Result.Error -> error("network error")
+            is Result.Error -> {
+                val pokemonNameData = PokemonNameData(name = name, names = emptyList())
+                result.error.message?.let {
+                    if (it.contains("404")) {
+                        local.insertPokemonName(pokemonNameData)
+                    }
+                }
+                return pokemonNameData.toDomain()
+            }
         }
     }
 
