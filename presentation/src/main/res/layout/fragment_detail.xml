@@ -5,9 +5,11 @@
 
     <data>
 
+        <import type="com.chh.cleanarchitecture.presentation.ui.base.UIStateKt" />
+
         <variable
-            name="pokemon"
-            type="com.chh.cleanarchitecture.presentation.model.PokemonModel" />
+            name="vm"
+            type="com.chh.cleanarchitecture.presentation.ui.details.DetailViewModel" />
 
     </data>
 
@@ -22,7 +24,8 @@
             app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:toast="@{UIStateKt.throwableOrNull(vm.uiState)}">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -32,6 +35,17 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
+                    android:src="@drawable/background"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:alpha="0.6"
+                    android:background="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -46,11 +60,12 @@
                     android:layout_marginBottom="20dp"
                     android:scaleType="fitCenter"
                     app:background="@{background}"
-                    app:image="@{pokemon.thumbnailUrl}"
+                    app:image="@{vm.pokemon.thumbnailUrl}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:name="@{name}"
                     tools:src="@drawable/preview_pokemon" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -84,13 +99,27 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="2"
-            android:text="@{pokemon.name}"
+            android:text="@{vm.pokemonDetail.name}"
             android:textColor="@color/white"
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardView"
             tools:text="bulbassaur" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:elevation="3dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading"
+            app:show="@{vm.uiState}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

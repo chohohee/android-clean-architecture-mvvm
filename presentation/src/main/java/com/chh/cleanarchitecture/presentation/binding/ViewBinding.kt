@@ -8,6 +8,7 @@ import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.palette.graphics.Palette
@@ -65,6 +66,31 @@ private fun createView(view: View, background: Int?, border: Int?) {
     background?.let { shape.setColor(it) }
     border?.let { shape.setStroke(10, it) }
     view.background = shape
+}
+
+@BindingAdapter("image", "background", "name")
+fun AppCompatImageView.bindImage(thumbnailUrl: String, view: ConstraintLayout, textView: AppCompatTextView) {
+    Glide.with(this)
+        .load(thumbnailUrl)
+        .listener(
+            object : RequestListener<Drawable> {
+                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean,): Boolean {
+                    return false
+                }
+
+                override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>?, dataSource: DataSource, isFirstResource: Boolean): Boolean {
+                    val drawable = resource as BitmapDrawable
+                    val bitmap = drawable.bitmap
+                    Palette.Builder(bitmap).generate { palette ->
+                        val dark = palette?.darkMutedSwatch?.rgb
+                        val light = palette?.lightVibrantSwatch?.rgb
+                        dark?.let { view.setBackgroundColor(dark) }
+                        light?.let { textView.setTextColor(light) }
+                    }
+                    return false
+                }
+            },
+        ).into(this)
 }
 
 @BindingAdapter("toast")
