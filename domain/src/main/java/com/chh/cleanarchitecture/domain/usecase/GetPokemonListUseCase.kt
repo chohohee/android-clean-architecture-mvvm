@@ -6,9 +6,9 @@ import com.chh.cleanarchitecture.domain.repository.PokemonRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetPokemonUseCase @Inject constructor(
+class GetPokemonListUseCase @Inject constructor(
     private val pokemonRepository: PokemonRepository
 ) {
 
-    operator fun invoke(): Flow<PagingData<Pokemon>> = pokemonRepository.getPokemon()
+    operator fun invoke(): Flow<PagingData<Pokemon>> = pokemonRepository.getPokemonList()
 }

@@ -26,7 +26,7 @@ internal class DefaultPokemonRepository @Inject constructor(
     private val remoteMediator: PokemonRemoteMediator
 ) : PokemonRepository {
 
-    override fun getPokemon(): Flow<PagingData<Pokemon>> {
+    override fun getPokemonList(): Flow<PagingData<Pokemon>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 100,

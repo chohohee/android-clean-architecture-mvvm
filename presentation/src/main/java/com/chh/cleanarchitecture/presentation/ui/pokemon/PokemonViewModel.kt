@@ -8,7 +8,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.chh.cleanarchitecture.domain.model.Pokemon
-import com.chh.cleanarchitecture.domain.usecase.GetPokemonUseCase
+import com.chh.cleanarchitecture.domain.usecase.GetPokemonListUseCase
 import com.chh.cleanarchitecture.presentation.mapper.toPresentation
 import com.chh.cleanarchitecture.presentation.model.PokemonModel
 import com.chh.cleanarchitecture.presentation.ui.base.UiState
@@ -24,7 +24,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PokemonViewModel @Inject constructor(
-    getPokemonUseCase: GetPokemonUseCase,
+    getPokemonListUseCase: GetPokemonListUseCase,
 ) : ViewModel() {
 
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState.Loading)
@@ -34,7 +34,7 @@ class PokemonViewModel @Inject constructor(
     val navigationState = _navigationState.asSharedFlow()
 
     val pokemon: Flow<PagingData<PokemonModel>> =
-        getPokemonUseCase()
+        getPokemonListUseCase()
             .cachedIn(viewModelScope)
             .map { it.map(Pokemon::toPresentation) }
 
