@@ -6,5 +6,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class PokemonModel(
     val name: String,
-    val thumbnailUrl: String
-) : Parcelable
+    val thumbnailUrl: String,
+    val localizedName: String?
+) : Parcelable {
+
+    fun unconfirmed(): Boolean = localizedName.isNullOrEmpty()
+}

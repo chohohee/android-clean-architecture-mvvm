@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.chh.cleanarchitecture.data.model.NameData
 import com.chh.cleanarchitecture.local.model.PokemonEntity
 
 @Dao
@@ -17,5 +18,9 @@ interface PokemonDao {
 
     @Query("SELECT * FROM pokemon LIMIT :limit OFFSET :offset ")
     suspend fun getPokemonList(limit: Int, offset: Int): List<PokemonEntity>
+
+    @Query("UPDATE pokemon SET names=:names WHERE name = :name")
+    suspend fun updatePokemon(names: List<NameData>, name: String)
+
 
 }

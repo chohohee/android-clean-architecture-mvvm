@@ -51,7 +51,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:text="@{pokemon.name}"
+            android:text="@{pokemon.unconfirmed() ? `` : pokemon.localizedName}"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"

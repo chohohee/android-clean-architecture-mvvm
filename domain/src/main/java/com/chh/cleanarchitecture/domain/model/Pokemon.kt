@@ -2,7 +2,9 @@ package com.chh.cleanarchitecture.domain.model
 
 data class Pokemon(
     val name: String,
-    val url: String
+    val url: String,
+    val names: List<Name>?,
+    var localizedName: String? = ""
 ) {
 
     private fun getIndex(): String = url.split("/".toRegex()).dropLast(1).last()

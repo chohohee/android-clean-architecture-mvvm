@@ -13,6 +13,8 @@ interface PokemonLocalDataSource {
 
     suspend fun getPokemonList(limit: Int, offset: Int): List<PokemonData>
 
+    suspend fun updatePokemon(name: PokemonNameData)
+
     suspend fun getPokemonName(name: String): PokemonNameData?
 
     suspend fun insertPokemonName(name: PokemonNameData)

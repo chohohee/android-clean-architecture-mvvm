@@ -54,6 +54,7 @@ internal class DefaultPokemonRepository @Inject constructor(
             is Result.Success -> {
                 val pokemonNameData = result.data
                 local.insertPokemonName(pokemonNameData)
+                local.updatePokemon(pokemonNameData)
                 return pokemonNameData.toDomain()
             }
 
@@ -62,6 +63,7 @@ internal class DefaultPokemonRepository @Inject constructor(
                 result.error.message?.let {
                     if (it.contains("404")) {
                         local.insertPokemonName(pokemonNameData)
+                        local.updatePokemon(pokemonNameData)
                     }
                 }
                 return pokemonNameData.toDomain()

@@ -30,6 +30,10 @@ internal class DefaultPokemonLocalDataSource @Inject constructor(
     override suspend fun getPokemonList(limit: Int, offset: Int): List<PokemonData> =
         pokemonDao.getPokemonList(limit, offset).map(PokemonEntityMapper::toData)
 
+    override suspend fun updatePokemon(name: PokemonNameData) {
+        pokemonDao.updatePokemon(name.names, name.name)
+    }
+
     override suspend fun getPokemonName(name: String): PokemonNameData? =
         pokemonNameDao.getPokemonName(name)?.toData()
 
