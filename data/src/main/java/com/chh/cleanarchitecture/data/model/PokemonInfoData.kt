@@ -16,12 +16,7 @@ data class PokemonInfoData(
             name = this.name,
             height = this.height,
             weight = this.weight,
-            types = this.types.map {
-                PokemonInfo.Type(
-                    name = it.name,
-                    url = it.url
-                )
-            }
+            types = this.types.map(TypeData::toDomain)
         )
 }
 

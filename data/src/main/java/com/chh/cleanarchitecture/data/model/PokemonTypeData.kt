@@ -1,7 +1,6 @@
 package com.chh.cleanarchitecture.data.model
 
 import com.chh.cleanarchitecture.data.mapper.DataToDomainMapper
-import com.chh.cleanarchitecture.domain.model.Name
 import com.chh.cleanarchitecture.domain.model.PokemonType
 
 data class PokemonTypeData(
@@ -13,11 +12,6 @@ data class PokemonTypeData(
         PokemonType(
             id = this.id,
             name = this.name,
-            names = this.names.map {
-                Name(
-                    language = it.language,
-                    name = it.name
-                )
-            }
+            names = this.names.map(NameData::toDomain)
         )
 }
