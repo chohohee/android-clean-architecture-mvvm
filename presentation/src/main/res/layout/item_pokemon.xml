@@ -34,12 +34,22 @@
             android:layout_margin="5dp"
             android:scaleType="centerInside"
             app:background="@{background}"
-            app:image="@{pokemon.thumbnailUrl}"
+            app:image="@{pokemon}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/preview_pokemon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/lock"
+            android:tint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibility="@{pokemon.unconfirmed()}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/name"

@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.BindingAdapter
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.chh.cleanarchitecture.presentation.model.PokemonModel
 import com.chh.cleanarchitecture.presentation.model.PokemonTypeModel
 import com.chh.cleanarchitecture.presentation.ui.adapter.PokemonPagingAdapter
 import com.chh.cleanarchitecture.presentation.ui.adapter.PokemonTypeAdapter
@@ -41,9 +43,10 @@ fun RecyclerView.bindItems(items: List<PokemonTypeModel>?) {
 }
 
 @BindingAdapter("image", "background")
-fun AppCompatImageView.bindImage(thumbnailUrl: String, view: ConstraintLayout) {
+fun AppCompatImageView.bindImage(pokemon: PokemonModel, view: ConstraintLayout) {
+    val url = if (pokemon.unconfirmed()) pokemon.thumbnailUrl else pokemon.confirmedUrl
     Glide.with(this)
-        .load(thumbnailUrl)
+        .load(url)
         .listener(
             object : RequestListener<Drawable> {
                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean,): Boolean {
@@ -51,8 +54,7 @@ fun AppCompatImageView.bindImage(thumbnailUrl: String, view: ConstraintLayout) {
                 }
 
                 override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>?, dataSource: DataSource, isFirstResource: Boolean): Boolean {
-                    val drawable = resource as BitmapDrawable
-                    val bitmap = drawable.bitmap
+                    val bitmap = resource.toBitmap()
                     Palette.Builder(bitmap).generate { palette ->
                         val dominant = palette?.dominantSwatch?.rgb
                         val darkMuted = palette?.darkMutedSwatch?.rgb
@@ -65,6 +67,8 @@ fun AppCompatImageView.bindImage(thumbnailUrl: String, view: ConstraintLayout) {
 
                         createView(view, background, border)
                     }
+                    this@bindImage.scaleX = if (pokemon.unconfirmed()) 1f else 3f
+                    this@bindImage.scaleY = if (pokemon.unconfirmed()) 1f else 3f
                     return false
                 }
             },
@@ -147,4 +151,9 @@ fun MaterialCardView.bindType(type: PokemonTypeModel) {
     val alpha = ColorUtils.setAlphaComponent(color, (256 * 0.7).toInt())
     setCardBackgroundColor(alpha)
     strokeColor = color
+}
+
+@BindingAdapter("visibility")
+fun AppCompatImageView.bindVisibility(unconfirmed: Boolean) {
+    visibility = if (unconfirmed) View.VISIBLE else View.GONE
 }

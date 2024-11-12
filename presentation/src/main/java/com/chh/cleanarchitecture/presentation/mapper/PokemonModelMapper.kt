@@ -7,5 +7,6 @@ internal fun Pokemon.toPresentation(): PokemonModel =
     PokemonModel(
         name = this.name,
         thumbnailUrl = this.getThumbnailUrl(),
-        localizedName = this.localizedName
+        localizedName = this.localizedName,
+        confirmedUrl = this.getConfirmedUrl()
     )

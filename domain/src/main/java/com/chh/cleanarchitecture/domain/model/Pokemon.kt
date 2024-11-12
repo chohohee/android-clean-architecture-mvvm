@@ -12,4 +12,6 @@ data class Pokemon(
     fun getThumbnailUrl(): String =
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${getIndex()}.png"
 
+    fun getConfirmedUrl(): String =
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${getIndex()}.gif"
 }
