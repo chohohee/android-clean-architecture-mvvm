@@ -4,6 +4,7 @@ data class Pokemon(
     val name: String,
     val url: String,
     val names: List<Name>?,
+    var localizedBaseName: String?,
     var localizedName: String? = ""
 ) {
 

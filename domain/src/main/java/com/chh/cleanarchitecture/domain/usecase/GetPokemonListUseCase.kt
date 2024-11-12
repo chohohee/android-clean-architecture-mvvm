@@ -21,7 +21,7 @@ class GetPokemonListUseCase @Inject constructor(
         }
 
     fun localized(pokemon: Pokemon): Pokemon {
-        pokemon.localizedName = getLocalizedNameUseCase(pokemon.names)
+        pokemon.localizedName = getLocalizedNameUseCase(pokemon.names) ?: pokemon.localizedBaseName
         return pokemon
     }
 }

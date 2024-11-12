@@ -8,5 +8,6 @@ import com.chh.cleanarchitecture.data.model.NameData
 data class PokemonEntity(
     @PrimaryKey val name: String,
     val url: String,
-    val names: List<NameData>?
+    val names: List<NameData>? = null,
+    val localizedBaseName: String? = null
 )

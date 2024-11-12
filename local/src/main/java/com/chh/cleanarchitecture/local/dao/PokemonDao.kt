@@ -19,7 +19,7 @@ interface PokemonDao {
     @Query("SELECT * FROM pokemon LIMIT :limit OFFSET :offset ")
     suspend fun getPokemonList(limit: Int, offset: Int): List<PokemonEntity>
 
-    @Query("UPDATE pokemon SET names=:names WHERE name = :name")
+    @Query("UPDATE pokemon SET names=:names, localizedBaseName=:name WHERE name = :name")
     suspend fun updatePokemon(names: List<NameData>, name: String)
 
 

@@ -7,14 +7,14 @@ object PokemonEntityMapper : EntityMapper<PokemonData, PokemonEntity> {
     override fun toEntity(data: PokemonData): PokemonEntity =
         PokemonEntity(
             name = data.name,
-            url = data.url,
-            names = data.names
+            url = data.url
         )
 
     override fun toData(entity: PokemonEntity): PokemonData =
         PokemonData(
             name = entity.name,
             url = entity.url,
-            names = entity.names
+            names = entity.names,
+            localizedBaseName = entity.localizedBaseName
         )
 }
