@@ -3,6 +3,7 @@ package com.chh.cleanarchitecture.presentation.ui.details
 import androidx.fragment.app.viewModels
 import com.chh.cleanarchitecture.presentation.R
 import com.chh.cleanarchitecture.presentation.databinding.FragmentDetailBinding
+import com.chh.cleanarchitecture.presentation.ui.adapter.PokemonTypeAdapter
 import com.chh.cleanarchitecture.presentation.ui.base.BaseBottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -11,9 +12,12 @@ class DetailFragment : BaseBottomSheetDialogFragment<FragmentDetailBinding>(R.la
 
     private val viewModel by viewModels<DetailViewModel>()
 
+    private val pokemonTypeAdapter by lazy { PokemonTypeAdapter() }
+
     override fun initView() {
         with(binding) {
             vm = viewModel
+            adapter = pokemonTypeAdapter
         }
     }
 }

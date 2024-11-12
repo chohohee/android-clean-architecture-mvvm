@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import androidx.databinding.BindingAdapter
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
@@ -19,13 +21,23 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.chh.cleanarchitecture.presentation.model.PokemonTypeModel
 import com.chh.cleanarchitecture.presentation.ui.adapter.PokemonPagingAdapter
+import com.chh.cleanarchitecture.presentation.ui.adapter.PokemonTypeAdapter
 import com.chh.cleanarchitecture.presentation.ui.base.UiState
+import com.chh.cleanarchitecture.presentation.util.PokemonColorUtils
+import com.google.android.material.card.MaterialCardView
 
 @BindingAdapter("adapter")
 fun RecyclerView.bindAdapter(adapter: PokemonPagingAdapter) {
     this.adapter = adapter
     setHasFixedSize(true)
+}
+
+@BindingAdapter("items")
+fun RecyclerView.bindItems(items: List<PokemonTypeModel>?) {
+    if (items?.isEmpty() == true) return
+    (adapter as? PokemonTypeAdapter)?.submitList(items)
 }
 
 @BindingAdapter("image", "background")
@@ -127,4 +139,12 @@ fun LottieAnimationView.bindShow(uiState: UiState) {
     if (!isAnimating) {
         playAnimation()
     }
+}
+
+@BindingAdapter("type")
+fun MaterialCardView.bindType(type: PokemonTypeModel) {
+    val color = ContextCompat.getColor(this.context, PokemonColorUtils.getTypeColor(type.baseName))
+    val alpha = ColorUtils.setAlphaComponent(color, (256 * 0.7).toInt())
+    setCardBackgroundColor(alpha)
+    strokeColor = color
 }

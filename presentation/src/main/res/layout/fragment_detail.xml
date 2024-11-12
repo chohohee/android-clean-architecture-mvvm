@@ -11,6 +11,10 @@
             name="vm"
             type="com.chh.cleanarchitecture.presentation.ui.details.DetailViewModel" />
 
+        <variable
+            name="adapter"
+            type="com.chh.cleanarchitecture.presentation.ui.adapter.PokemonTypeAdapter" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,6 +54,24 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:padding="1dp"
+                    app:adapter="@{adapter}"
+                    app:items="@{vm.pokemonDetail.types}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:toast="@{UIStateKt.throwableOrNull(vm.uiState)}"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_pokemon_type" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image"

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="type"
+            type="com.chh.cleanarchitecture.presentation.model.PokemonTypeModel" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="2dp"
+        app:type="@{type}"
+        tools:alpha=".7"
+        tools:background="@drawable/type_background"
+        tools:cardBackgroundColor="@color/grass">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="6dp"
+            android:text="@{type.localizedName}"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            tools:text="Grass" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
+
+
+
