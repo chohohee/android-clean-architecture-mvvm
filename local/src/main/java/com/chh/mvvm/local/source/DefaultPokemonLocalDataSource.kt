@@ -32,10 +32,10 @@ internal class DefaultPokemonLocalDataSource @Inject constructor(
     override suspend fun getPokemonList(limit: Int, offset: Int): List<PokemonData> =
         pokemonDao.getPokemonList(limit, offset).map(PokemonEntityMapper::toData)
 
-    override fun getPokemonNameList(): Flow<List<PokemonNameData>> =
+    override fun getPokemonNameLast(): Flow<PokemonNameData> =
         flow {
-            pokemonNameDao.getPokemonNameList().collect { result ->
-                emit(result.map { it.toData() })
+            pokemonNameDao.getPokemonNameLast().collect {
+                emit(it.toData())
             }
         }
 

@@ -14,7 +14,7 @@ interface PokemonLocalDataSource {
 
     suspend fun getPokemonList(limit: Int, offset: Int): List<PokemonData>
 
-    fun getPokemonNameList(): Flow<List<PokemonNameData>>
+    fun getPokemonNameLast(): Flow<PokemonNameData>
 
     suspend fun updatePokemon(name: PokemonNameData)
 

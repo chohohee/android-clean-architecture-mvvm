@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PokemonNameDao {
 
-    @Query("SELECT * FROM pokemon_name ORDER BY timestamp ASC")
-    fun getPokemonNameList(): Flow<List<PokemonNameEntity>>
+    @Query("SELECT * FROM pokemon_name ORDER BY timestamp DESC LIMIT 1")
+    fun getPokemonNameLast(): Flow<PokemonNameEntity>
 
     @Query("SELECT * FROM pokemon_name WHERE name = :name")
     suspend fun getPokemonName(name: String): PokemonNameEntity?

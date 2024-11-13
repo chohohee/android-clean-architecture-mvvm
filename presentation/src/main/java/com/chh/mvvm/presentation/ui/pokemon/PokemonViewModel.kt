@@ -10,7 +10,7 @@ import androidx.paging.map
 import com.chh.mvvm.domain.model.LocalizedName
 import com.chh.mvvm.domain.model.Pokemon
 import com.chh.mvvm.domain.usecase.GetPokemonListUseCase
-import com.chh.mvvm.domain.usecase.GetPokemonNameListUseCase
+import com.chh.mvvm.domain.usecase.GetPokemonNameLastUseCase
 import com.chh.mvvm.presentation.mapper.toPresentation
 import com.chh.mvvm.presentation.model.PokemonModel
 import com.chh.mvvm.presentation.ui.base.UiState
@@ -28,7 +28,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PokemonViewModel @Inject constructor(
     getPokemonListUseCase: GetPokemonListUseCase,
-    getPokemonNameListUseCase: GetPokemonNameListUseCase
+    getPokemonNameLastUseCase: GetPokemonNameLastUseCase
 ) : ViewModel() {
 
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState.Loading)
@@ -42,8 +42,8 @@ class PokemonViewModel @Inject constructor(
     val pokemon: Flow<PagingData<PokemonModel>> =
         getPokemonListUseCase()
             .cachedIn(viewModelScope)
-            .combine(getPokemonNameListUseCase()) { paging, names ->
-                localizedName = names.lastOrNull()
+            .combine(getPokemonNameLastUseCase()) { paging, name ->
+                localizedName = name
                 paging.map(::localized)
             }
             .cachedIn(viewModelScope)

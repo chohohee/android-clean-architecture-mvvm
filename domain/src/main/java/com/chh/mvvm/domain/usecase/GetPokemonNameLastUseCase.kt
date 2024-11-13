@@ -7,19 +7,19 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetPokemonNameListUseCase @Inject constructor(
+class GetPokemonNameLastUseCase @Inject constructor(
     private val pokemonRepository: PokemonRepository,
     private val getLocalizedNameUseCase: GetLocalizedNameUseCase
 ) {
 
-    operator fun invoke(): Flow<List<LocalizedName>> =
+    operator fun invoke(): Flow<LocalizedName> =
         flow {
-            pokemonRepository.getPokemonNameList().collect {
-                emit(it.map(::localized))
+            pokemonRepository.getPokemonNameLast().collect {
+                emit(localized(it))
             }
         }
 
-    fun localized(name: PokemonName): LocalizedName {
+    private fun localized(name: PokemonName): LocalizedName {
         val localizedName = getLocalizedNameUseCase(name.names)
         return LocalizedName(
             baseName = name.name,

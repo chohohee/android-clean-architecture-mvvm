@@ -45,10 +45,10 @@ internal class DefaultPokemonRepository @Inject constructor(
         }
     }
 
-    override fun getPokemonNameList(): Flow<List<PokemonName>> =
+    override fun getPokemonNameLast(): Flow<PokemonName> =
         flow {
-            local.getPokemonNameList().collect {
-                emit(it.map(PokemonNameData::toDomain))
+            local.getPokemonNameLast().collect {
+                emit(it.toDomain())
             }
         }
 
