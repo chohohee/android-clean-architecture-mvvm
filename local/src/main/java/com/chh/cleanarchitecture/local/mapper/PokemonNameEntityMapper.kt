@@ -12,5 +12,6 @@ internal fun PokemonNameEntity.toData(): PokemonNameData =
 internal fun PokemonNameData.toEntity(): PokemonNameEntity =
     PokemonNameEntity(
         name = this.name,
-        names = this.names
+        names = this.names,
+        timestamp = System.currentTimeMillis()
     )

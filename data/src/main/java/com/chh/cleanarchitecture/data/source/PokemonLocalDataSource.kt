@@ -4,6 +4,7 @@ import com.chh.cleanarchitecture.data.model.PokemonData
 import com.chh.cleanarchitecture.data.model.PokemonInfoData
 import com.chh.cleanarchitecture.data.model.PokemonNameData
 import com.chh.cleanarchitecture.data.model.PokemonTypeData
+import kotlinx.coroutines.flow.Flow
 
 interface PokemonLocalDataSource {
 
@@ -12,6 +13,8 @@ interface PokemonLocalDataSource {
     suspend fun insertAll(pokemon: List<PokemonData>)
 
     suspend fun getPokemonList(limit: Int, offset: Int): List<PokemonData>
+
+    fun getPokemonNameList(): Flow<List<PokemonNameData>>
 
     suspend fun updatePokemon(name: PokemonNameData)
 

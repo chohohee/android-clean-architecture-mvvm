@@ -12,6 +12,8 @@ import com.chh.cleanarchitecture.local.dao.PokemonTypeDao
 import com.chh.cleanarchitecture.local.mapper.PokemonEntityMapper
 import com.chh.cleanarchitecture.local.mapper.toData
 import com.chh.cleanarchitecture.local.mapper.toEntity
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 internal class DefaultPokemonLocalDataSource @Inject constructor(
@@ -29,6 +31,13 @@ internal class DefaultPokemonLocalDataSource @Inject constructor(
 
     override suspend fun getPokemonList(limit: Int, offset: Int): List<PokemonData> =
         pokemonDao.getPokemonList(limit, offset).map(PokemonEntityMapper::toData)
+
+    override fun getPokemonNameList(): Flow<List<PokemonNameData>> =
+        flow {
+            pokemonNameDao.getPokemonNameList().collect { result ->
+                emit(result.map { it.toData() })
+            }
+        }
 
     override suspend fun updatePokemon(name: PokemonNameData) {
         pokemonDao.updatePokemon(name.names, name.name)

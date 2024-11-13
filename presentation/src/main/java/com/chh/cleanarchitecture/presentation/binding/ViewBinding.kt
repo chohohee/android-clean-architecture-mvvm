@@ -28,6 +28,7 @@ import com.chh.cleanarchitecture.presentation.ui.adapter.PokemonPagingAdapter
 import com.chh.cleanarchitecture.presentation.ui.adapter.PokemonTypeAdapter
 import com.chh.cleanarchitecture.presentation.ui.base.UiState
 import com.chh.cleanarchitecture.presentation.util.PokemonColorUtils
+import com.chh.cleanarchitecture.presentation.util.px
 import com.google.android.material.card.MaterialCardView
 
 @BindingAdapter("adapter")
@@ -78,9 +79,9 @@ fun AppCompatImageView.bindImage(pokemon: PokemonModel, view: ConstraintLayout) 
 private fun createView(view: View, background: Int?, border: Int?) {
     val shape = GradientDrawable()
     shape.shape = GradientDrawable.RECTANGLE
-    shape.cornerRadius = 20f
+    shape.cornerRadius = 8.px.toFloat()
     background?.let { shape.setColor(it) }
-    border?.let { shape.setStroke(10, it) }
+    border?.let { shape.setStroke(3.px, it) }
     view.background = shape
 }
 

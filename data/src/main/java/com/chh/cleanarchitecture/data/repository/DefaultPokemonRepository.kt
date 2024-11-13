@@ -17,6 +17,7 @@ import com.chh.cleanarchitecture.domain.model.PokemonName
 import com.chh.cleanarchitecture.domain.model.PokemonType
 import com.chh.cleanarchitecture.domain.repository.PokemonRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -43,6 +44,13 @@ internal class DefaultPokemonRepository @Inject constructor(
             pagingData.map(PokemonData::toDomain)
         }
     }
+
+    override fun getPokemonNameList(): Flow<List<PokemonName>> =
+        flow {
+            local.getPokemonNameList().collect {
+                emit(it.map(PokemonNameData::toDomain))
+            }
+        }
 
     override suspend fun getPokemonName(name: String): PokemonName {
         val pokemonName = local.getPokemonName(name)
