@@ -1,4 +1,4 @@
-import com.chh.cleanarchitecture.configureKotlin
+import com.chh.mvvm.configureKotlin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.chh.cleanarchitecture.presentation"
+    namespace = "com.chh.mvvm.presentation"
 }
 
 dependencies {

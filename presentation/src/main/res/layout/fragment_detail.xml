@@ -5,15 +5,15 @@
 
     <data>
 
-        <import type="com.chh.cleanarchitecture.presentation.ui.base.UIStateKt" />
+        <import type="com.chh.mvvm.presentation.ui.base.UIStateKt" />
 
         <variable
             name="vm"
-            type="com.chh.cleanarchitecture.presentation.ui.details.DetailViewModel" />
+            type="com.chh.mvvm.presentation.ui.details.DetailViewModel" />
 
         <variable
             name="adapter"
-            type="com.chh.cleanarchitecture.presentation.ui.adapter.PokemonTypeAdapter" />
+            type="com.chh.mvvm.presentation.ui.adapter.PokemonTypeAdapter" />
 
     </data>
 

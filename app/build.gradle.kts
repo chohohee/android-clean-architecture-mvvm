@@ -4,10 +4,10 @@ plugins {
 }
 
 android {
-    namespace = "com.chh.cleanarchitecture"
+    namespace = "com.chh.mvvm"
 
     defaultConfig {
-        applicationId = "com.chh.cleanarchitecture"
+        applicationId = "com.chh.mvvm"
         versionCode = 1
         versionName = "1.0"
     }

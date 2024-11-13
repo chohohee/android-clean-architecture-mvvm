@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.chh.cleanarchitecture.local"
+    namespace = "com.chh.mvvm.local"
 }
 
 dependencies {

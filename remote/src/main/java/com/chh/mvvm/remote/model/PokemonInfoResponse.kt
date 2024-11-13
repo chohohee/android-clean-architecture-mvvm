@@ -1,0 +1,24 @@
+package com.chh.mvvm.remote.model
+
+import com.chh.mvvm.data.model.PokemonInfoData
+import com.chh.mvvm.remote.mapper.ResponseToDataMapper
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal data class PokemonInfoResponse(
+    @SerialName("id") val id: Int,
+    @SerialName("name") val name: String,
+    @SerialName("height") val height: Int,
+    @SerialName("weight") val weight: Int,
+    @SerialName("types") val types: List<com.chh.mvvm.remote.model.TypesResponse>
+) : ResponseToDataMapper<PokemonInfoData> {
+    override fun toData(): PokemonInfoData =
+        PokemonInfoData(
+            id = this.id,
+            name = this.name,
+            height = this.height,
+            weight = this.weight,
+            types = this.types.map(com.chh.mvvm.remote.model.TypesResponse::toData)
+        )
+}
