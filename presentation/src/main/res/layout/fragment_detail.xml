@@ -24,7 +24,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="0dp"
-            android:layout_height="350dp"
+            android:layout_height="400dp"
             app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,6 +69,7 @@
                     app:layout_constraintBottom_toTopOf="@id/image"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/no"
                     app:toast="@{UIStateKt.throwableOrNull(vm.uiState)}"
                     tools:itemCount="2"
                     tools:listitem="@layout/item_pokemon_type" />
@@ -89,6 +90,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:name="@{name}"
                     tools:src="@drawable/preview_pokemon" />
+
+                <TextView
+                    android:id="@+id/no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:alpha="0.5"
+                    android:text="@{vm.pokemonDetail.getNo()}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="#001" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
