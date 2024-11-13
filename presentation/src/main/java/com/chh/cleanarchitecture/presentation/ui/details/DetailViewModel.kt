@@ -37,11 +37,17 @@ class DetailViewModel @Inject constructor(
         getPokemonDetailUseCase(pokemon.name)
             .map(PokemonDetail::toPresentation)
             .catch { _uiState.value = UiState.Error(it) }
-            .onStart { _uiState.value = UiState.Loading }
+            .onStart { checkLoading() }
             .onCompletion { _uiState.value = UiState.Success }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5_000),
                 initialValue = null,
             )
+
+    private fun checkLoading() {
+        if (pokemon.unconfirmed()) {
+            _uiState.value = UiState.Loading
+        }
+    }
 }
