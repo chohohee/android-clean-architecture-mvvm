@@ -1,4 +1,4 @@
-package com.chh.mvvm.presentation.util
+package com.chh.mvvm.presentation.utils
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle

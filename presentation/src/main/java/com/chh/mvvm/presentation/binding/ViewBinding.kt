@@ -27,9 +27,12 @@ import com.chh.mvvm.presentation.model.PokemonTypeModel
 import com.chh.mvvm.presentation.ui.adapter.PokemonPagingAdapter
 import com.chh.mvvm.presentation.ui.adapter.PokemonTypeAdapter
 import com.chh.mvvm.presentation.ui.base.UiState
-import com.chh.mvvm.presentation.util.PokemonColorUtils
-import com.chh.mvvm.presentation.util.px
+import com.chh.mvvm.presentation.utils.PokemonResourceUtils
+import com.chh.mvvm.presentation.utils.px
 import com.google.android.material.card.MaterialCardView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @BindingAdapter("adapter")
 fun RecyclerView.bindAdapter(adapter: PokemonPagingAdapter) {
@@ -45,35 +48,46 @@ fun RecyclerView.bindItems(items: List<PokemonTypeModel>?) {
 
 @BindingAdapter("image", "background")
 fun AppCompatImageView.bindImage(pokemon: PokemonModel, view: ConstraintLayout) {
-    val url = if (pokemon.unconfirmed()) pokemon.thumbnailUrl else pokemon.confirmedUrl
-    Glide.with(this)
+    if (pokemon.unconfirmed()) {
+        loadThumbnailImage(this, pokemon.thumbnailUrl, view)
+    } else {
+        loadConfirmImage(this, pokemon.confirmedUrl, view, pokemon.thumbnailUrl)
+    }
+}
+
+fun loadThumbnailImage(imageView: AppCompatImageView, url: String, view: ConstraintLayout) {
+    Glide.with(imageView)
         .load(url)
         .listener(
             object : RequestListener<Drawable> {
-                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean,): Boolean {
+                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
                     return false
                 }
 
                 override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>?, dataSource: DataSource, isFirstResource: Boolean): Boolean {
-                    val bitmap = resource.toBitmap()
-                    Palette.Builder(bitmap).generate { palette ->
-                        val dominant = palette?.dominantSwatch?.rgb
-                        val darkMuted = palette?.darkMutedSwatch?.rgb
-                        val darkVibrant = palette?.darkVibrantSwatch?.rgb
-                        val lightMuted = palette?.lightMutedSwatch?.rgb
-                        val lightVibrant = palette?.lightVibrantSwatch?.rgb
-
-                        val background = listOfNotNull(dominant, darkMuted, darkVibrant).firstOrNull()
-                        val border = listOfNotNull(lightMuted, lightVibrant, dominant).firstOrNull()
-
-                        createView(view, background, border)
-                    }
-                    this@bindImage.scaleX = if (pokemon.unconfirmed()) 1f else 3f
-                    this@bindImage.scaleY = if (pokemon.unconfirmed()) 1f else 3f
+                    paletteGenerate(resource, view)
+                    imageView.scaleX = 1f
+                    imageView.scaleY = 1f
                     return false
                 }
             },
-        ).into(this)
+        ).into(imageView)
+}
+
+fun paletteGenerate(resource: Drawable, view: ConstraintLayout) {
+    val bitmap = resource.toBitmap()
+    Palette.Builder(bitmap).generate { palette ->
+        val dominant = palette?.dominantSwatch?.rgb
+        val darkMuted = palette?.darkMutedSwatch?.rgb
+        val darkVibrant = palette?.darkVibrantSwatch?.rgb
+        val lightMuted = palette?.lightMutedSwatch?.rgb
+        val lightVibrant = palette?.lightVibrantSwatch?.rgb
+
+        val background = listOfNotNull(dominant, darkMuted, darkVibrant).firstOrNull()
+        val border = listOfNotNull(lightMuted, lightVibrant, dominant).firstOrNull()
+
+        createView(view, background, border)
+    }
 }
 
 private fun createView(view: View, background: Int?, border: Int?) {
@@ -83,6 +97,28 @@ private fun createView(view: View, background: Int?, border: Int?) {
     background?.let { shape.setColor(it) }
     border?.let { shape.setStroke(3.px, it) }
     view.background = shape
+}
+
+fun loadConfirmImage(imageView: AppCompatImageView, url: String, view: ConstraintLayout, thumbnailUrl: String) {
+    Glide.with(imageView)
+        .load(url)
+        .listener(
+            object : RequestListener<Drawable> {
+                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        loadThumbnailImage(imageView, thumbnailUrl, view)
+                    }
+                    return false
+                }
+
+                override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>?, dataSource: DataSource, isFirstResource: Boolean): Boolean {
+                    paletteGenerate(resource, view)
+                    imageView.scaleX = 3f
+                    imageView.scaleY = 3f
+                    return false
+                }
+            },
+        ).into(imageView)
 }
 
 @BindingAdapter("image", "background", "name")
@@ -148,7 +184,7 @@ fun LottieAnimationView.bindShow(uiState: UiState) {
 
 @BindingAdapter("type")
 fun MaterialCardView.bindType(type: PokemonTypeModel) {
-    val color = ContextCompat.getColor(this.context, PokemonColorUtils.getTypeColor(type.baseName))
+    val color = ContextCompat.getColor(this.context, PokemonResourceUtils.getTypeColor(type.baseName))
     val alpha = ColorUtils.setAlphaComponent(color, (256 * 0.7).toInt())
     setCardBackgroundColor(alpha)
     strokeColor = color
@@ -157,4 +193,10 @@ fun MaterialCardView.bindType(type: PokemonTypeModel) {
 @BindingAdapter("visibility")
 fun AppCompatImageView.bindVisibility(unconfirmed: Boolean) {
     visibility = if (unconfirmed) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("resource")
+fun AppCompatImageView.bindResource(type: String) {
+//    setBackgroundResource(PokemonResourceUtils.getTypeResource(type))
+    setImageResource(PokemonResourceUtils.getTypeResource(type))
 }

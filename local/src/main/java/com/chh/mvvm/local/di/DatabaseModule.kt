@@ -3,6 +3,7 @@ package com.chh.mvvm.local.di
 import android.content.Context
 import androidx.room.Room
 import com.chh.mvvm.local.converter.NameDataConverter
+import com.chh.mvvm.local.converter.StringDataConverter
 import com.chh.mvvm.local.converter.TypeDataConverter
 import com.chh.mvvm.local.database.PokemonDatabase
 import com.squareup.moshi.Moshi
@@ -23,12 +24,14 @@ internal object DatabaseModule {
     fun providePokemonDatabase(
         @ApplicationContext context: Context,
         nameDataConverter: NameDataConverter,
-        typeDataConverter: TypeDataConverter
+        typeDataConverter: TypeDataConverter,
+        stringDataConverter: StringDataConverter
     ): PokemonDatabase {
         return Room
             .databaseBuilder(context, PokemonDatabase::class.java, "pokemon.db")
             .addTypeConverter(nameDataConverter)
             .addTypeConverter(typeDataConverter)
+            .addTypeConverter(stringDataConverter)
             .build()
     }
 
@@ -43,5 +46,9 @@ internal object DatabaseModule {
     @Provides
     @Singleton
     fun provideTypeDataConverter(moshi: Moshi): TypeDataConverter = TypeDataConverter(moshi)
+
+    @Provides
+    @Singleton
+    fun provideStringDataConverter(moshi: Moshi): StringDataConverter = StringDataConverter(moshi)
 
 }

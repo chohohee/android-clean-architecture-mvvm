@@ -7,7 +7,7 @@ import com.chh.mvvm.data.model.PokemonData
 import com.chh.mvvm.data.source.PokemonLocalDataSource
 import com.chh.mvvm.data.source.PokemonRemoteDataSource
 import javax.inject.Inject
-import com.chh.mvvm.data.util.Result
+import com.chh.mvvm.data.utils.Result
 
 internal class PokemonRemoteMediator @Inject constructor(
     private val local: PokemonLocalDataSource,

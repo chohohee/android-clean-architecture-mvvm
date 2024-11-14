@@ -7,8 +7,8 @@ import com.chh.mvvm.data.model.PokemonTypeData
 import com.chh.mvvm.data.source.PokemonRemoteDataSource
 import com.chh.mvvm.remote.api.PokemonApi
 import javax.inject.Inject
-import com.chh.mvvm.data.util.Result
-import com.chh.mvvm.data.util.safeApiCall
+import com.chh.mvvm.data.utils.Result
+import com.chh.mvvm.data.utils.safeApiCall
 
 internal class DefaultPokemonRemoteDataSource @Inject constructor(
     private val pokemonApi: PokemonApi

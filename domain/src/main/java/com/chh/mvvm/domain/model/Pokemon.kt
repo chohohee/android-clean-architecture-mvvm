@@ -5,7 +5,8 @@ data class Pokemon(
     val url: String,
     val names: List<Name>?,
     var localizedBaseName: String?,
-    var localizedName: String? = ""
+    var localizedName: String? = "",
+    var types: List<String>? = null
 ) {
 
     private fun getIndex(): String = url.split("/".toRegex()).dropLast(1).last()

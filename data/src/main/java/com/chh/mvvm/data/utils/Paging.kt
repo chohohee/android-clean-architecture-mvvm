@@ -1,4 +1,4 @@
-package com.chh.mvvm.data.util
+package com.chh.mvvm.data.utils
 
 import androidx.paging.PagingSource.LoadParams
 

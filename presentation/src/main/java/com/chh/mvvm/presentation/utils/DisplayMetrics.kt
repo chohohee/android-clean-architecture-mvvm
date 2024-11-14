@@ -1,5 +1,5 @@
 
-package com.chh.mvvm.presentation.util
+package com.chh.mvvm.presentation.utils
 
 import android.content.res.Resources
 import kotlin.math.roundToInt

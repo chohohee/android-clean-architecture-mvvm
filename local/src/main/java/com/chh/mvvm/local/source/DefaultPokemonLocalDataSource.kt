@@ -12,6 +12,8 @@ import com.chh.mvvm.local.dao.PokemonTypeDao
 import com.chh.mvvm.local.mapper.PokemonEntityMapper
 import com.chh.mvvm.local.mapper.toData
 import com.chh.mvvm.local.mapper.toEntity
+import com.chh.mvvm.local.model.PokemonInfoEntity
+import com.chh.mvvm.local.model.PokemonNameEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -32,15 +34,26 @@ internal class DefaultPokemonLocalDataSource @Inject constructor(
     override suspend fun getPokemonList(limit: Int, offset: Int): List<PokemonData> =
         pokemonDao.getPokemonList(limit, offset).map(PokemonEntityMapper::toData)
 
-    override fun getPokemonNameLast(): Flow<PokemonNameData> =
+    override fun getPokemonNameLast(): Flow<List<PokemonNameData>> =
         flow {
             pokemonNameDao.getPokemonNameLast().collect {
-                emit(it.toData())
+                emit(it.map(PokemonNameEntity::toData))
             }
         }
 
-    override suspend fun updatePokemon(name: PokemonNameData) {
-        pokemonDao.updatePokemon(name.names, name.name)
+    override fun getPokemonInfoLast(): Flow<List<PokemonInfoData>> =
+        flow {
+            pokemonInfoDao.getPokemonInfoLast().collect {
+                emit(it.map(PokemonInfoEntity::toData))
+            }
+        }
+
+    override suspend fun updatePokemonNames(name: PokemonNameData) {
+        pokemonDao.updatePokemonNames(name.names, name.name)
+    }
+
+    override suspend fun updatePokemonTypes(info: PokemonInfoData) {
+        pokemonDao.updatePokemonTypes(info.types.map { it.name }, info.name)
     }
 
     override suspend fun getPokemonName(name: String): PokemonNameData? =

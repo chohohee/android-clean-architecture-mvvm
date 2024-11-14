@@ -4,8 +4,8 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.chh.mvvm.data.model.PokemonData
 import com.chh.mvvm.data.source.PokemonLocalDataSource
-import com.chh.mvvm.data.util.getLimit
-import com.chh.mvvm.data.util.getOffset
+import com.chh.mvvm.data.utils.getLimit
+import com.chh.mvvm.data.utils.getOffset
 
 internal class PokemonPagingSource(
     private val local: PokemonLocalDataSource

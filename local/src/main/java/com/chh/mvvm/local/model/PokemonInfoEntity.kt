@@ -10,5 +10,6 @@ data class PokemonInfoEntity(
     val name: String,
     val height: Int,
     val weight: Int,
-    val types: List<TypeData>
+    val types: List<TypeData>,
+    val timestamp: Long
 )

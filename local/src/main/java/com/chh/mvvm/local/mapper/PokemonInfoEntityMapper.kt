@@ -18,5 +18,6 @@ internal fun PokemonInfoData.toEntity(): PokemonInfoEntity =
         name = this.name,
         height = this.height,
         weight = this.weight,
-        types = this.types
+        types = this.types,
+        timestamp = System.currentTimeMillis()
     )

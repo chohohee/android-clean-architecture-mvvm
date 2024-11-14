@@ -7,14 +7,14 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.chh.mvvm.domain.model.LocalizedName
 import com.chh.mvvm.domain.model.Pokemon
+import com.chh.mvvm.domain.model.PokemonCard
 import com.chh.mvvm.domain.usecase.GetPokemonListUseCase
-import com.chh.mvvm.domain.usecase.GetPokemonNameLastUseCase
+import com.chh.mvvm.domain.usecase.GetPokemonCardUseCase
 import com.chh.mvvm.presentation.mapper.toPresentation
 import com.chh.mvvm.presentation.model.PokemonModel
 import com.chh.mvvm.presentation.ui.base.UiState
-import com.chh.mvvm.presentation.util.singleSharedFlow
+import com.chh.mvvm.presentation.utils.singleSharedFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -28,7 +28,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PokemonViewModel @Inject constructor(
     getPokemonListUseCase: GetPokemonListUseCase,
-    getPokemonNameLastUseCase: GetPokemonNameLastUseCase
+    getPokemonCardUseCase: GetPokemonCardUseCase
 ) : ViewModel() {
 
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState.Loading)
@@ -37,22 +37,23 @@ class PokemonViewModel @Inject constructor(
     private val _navigationState: MutableSharedFlow<NavigationState> = singleSharedFlow()
     val navigationState = _navigationState.asSharedFlow()
 
-    private var localizedName: LocalizedName? = null
+    private var pokemonCard: PokemonCard? = null
 
     val pokemon: Flow<PagingData<PokemonModel>> =
         getPokemonListUseCase()
             .cachedIn(viewModelScope)
-            .combine(getPokemonNameLastUseCase()) { paging, name ->
-                localizedName = name
-                paging.map(::localized)
+            .combine(getPokemonCardUseCase()) { paging, card ->
+                pokemonCard = card
+                paging.map(::updatePokemon)
             }
             .cachedIn(viewModelScope)
             .map { it.map(Pokemon::toPresentation) }
 
-    fun localized(pokemon: Pokemon): Pokemon {
-        localizedName?.let {
+    fun updatePokemon(pokemon: Pokemon): Pokemon {
+        pokemonCard?.let {
             if (pokemon.name == it.baseName) {
                 pokemon.localizedName = it.localizedName
+                pokemon.types = it.types
             }
         }
         return pokemon

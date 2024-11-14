@@ -12,10 +12,10 @@ class GetPokemonNameLastUseCase @Inject constructor(
     private val getLocalizedNameUseCase: GetLocalizedNameUseCase
 ) {
 
-    operator fun invoke(): Flow<LocalizedName> =
+    operator fun invoke(): Flow<List<LocalizedName>> =
         flow {
             pokemonRepository.getPokemonNameLast().collect {
-                emit(localized(it))
+                emit(it.map(::localized))
             }
         }
 

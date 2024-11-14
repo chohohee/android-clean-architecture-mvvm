@@ -9,5 +9,6 @@ data class PokemonEntity(
     @PrimaryKey val name: String,
     val url: String,
     val names: List<NameData>? = null,
-    val localizedBaseName: String? = null
+    val localizedBaseName: String? = null,
+    val types: List<String>? = null
 )

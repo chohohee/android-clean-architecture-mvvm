@@ -8,7 +8,8 @@ data class PokemonModel(
     val name: String,
     val thumbnailUrl: String,
     val localizedName: String?,
-    val confirmedUrl: String
+    val confirmedUrl: String,
+    val types: List<String>?
 ) : Parcelable {
 
     fun unconfirmed(): Boolean = localizedName.isNullOrEmpty()

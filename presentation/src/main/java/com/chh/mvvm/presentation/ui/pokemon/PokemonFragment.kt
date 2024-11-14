@@ -7,7 +7,7 @@ import com.chh.mvvm.presentation.R
 import com.chh.mvvm.presentation.databinding.FragmentPokemonBinding
 import com.chh.mvvm.presentation.ui.adapter.PokemonPagingAdapter
 import com.chh.mvvm.presentation.ui.base.BaseFragment
-import com.chh.mvvm.presentation.util.launchAndRepeatWithViewLifecycle
+import com.chh.mvvm.presentation.utils.launchAndRepeatWithViewLifecycle
 import com.chh.mvvm.presentation.ui.pokemon.PokemonViewModel.NavigationState.PokemonDetails
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

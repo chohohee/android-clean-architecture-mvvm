@@ -4,7 +4,7 @@ import com.chh.mvvm.data.model.PokemonInfoData
 import com.chh.mvvm.data.model.PokemonNameData
 import com.chh.mvvm.data.model.PokemonPagedData
 import com.chh.mvvm.data.model.PokemonTypeData
-import com.chh.mvvm.data.util.Result
+import com.chh.mvvm.data.utils.Result
 
 interface PokemonRemoteDataSource {
 

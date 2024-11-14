@@ -11,7 +11,9 @@ interface PokemonRepository {
 
     fun getPokemonList(): Flow<PagingData<Pokemon>>
 
-    fun getPokemonNameLast(): Flow<PokemonName>
+    fun getPokemonNameLast(): Flow<List<PokemonName>>
+
+    fun getPokemonInfoLast(): Flow<List<PokemonInfo>>
 
     suspend fun getPokemonName(name: String): PokemonName
 

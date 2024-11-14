@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="adapter"
+            type="com.chh.mvvm.presentation.ui.adapter.PokemonTypeResourceAdapter" />
+
+        <variable
             name="pokemon"
             type="com.chh.mvvm.presentation.model.PokemonModel" />
 
@@ -26,6 +30,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:orientation="horizontal"
+            app:adapter="@{adapter}"
+            app:itemAnimator="@{null}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_pokemon_type_resource" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image"

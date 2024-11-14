@@ -1,4 +1,4 @@
-package com.chh.mvvm.data.util
+package com.chh.mvvm.data.utils
 
 sealed class Result<T> {
     data class Success<T>(val data: T) : Result<T>()

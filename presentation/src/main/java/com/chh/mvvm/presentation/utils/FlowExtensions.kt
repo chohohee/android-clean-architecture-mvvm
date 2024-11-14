@@ -1,4 +1,4 @@
-package com.chh.mvvm.presentation.util
+package com.chh.mvvm.presentation.utils
 
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
