@@ -9,5 +9,5 @@ internal fun Pokemon.toPresentation(): PokemonModel =
         thumbnailUrl = this.getThumbnailUrl(),
         localizedName = this.localizedName,
         confirmedUrl = this.getConfirmedUrl(),
-        types = this.types
+        types = this.types?.sorted()
     )
