@@ -10,6 +10,7 @@ data class PokemonInfoData(
     val weight: Int,
     val types: List<TypeData>
 ) : DataToDomainMapper<PokemonInfo> {
+
     override fun toDomain(): PokemonInfo =
         PokemonInfo(
             id = this.id,
@@ -19,5 +20,3 @@ data class PokemonInfoData(
             types = this.types.map(TypeData::toDomain)
         )
 }
-
-

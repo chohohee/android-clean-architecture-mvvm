@@ -7,5 +7,10 @@ data class NameData(
     val language: String,
     val name: String
 ) : DataToDomainMapper<Name> {
-    override fun toDomain(): Name = Name(language = this.language, name = this.name)
+
+    override fun toDomain(): Name =
+        Name(
+            language = this.language,
+            name = this.name
+        )
 }

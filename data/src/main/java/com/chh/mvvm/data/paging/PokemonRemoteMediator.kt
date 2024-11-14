@@ -21,6 +21,7 @@ internal class PokemonRemoteMediator @Inject constructor(
         loadType: LoadType,
         state: PagingState<Int, PokemonData>
     ): MediatorResult {
+
         val offset = when (loadType) {
             LoadType.REFRESH -> 0
             LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)

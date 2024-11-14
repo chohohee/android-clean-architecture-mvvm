@@ -13,8 +13,8 @@ internal class PokemonPagingSource(
 
     private var itemCount = INITIAL_ITEM_COUNT
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PokemonData> =
-        try {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PokemonData> {
+        return try {
             if (itemCount == INITIAL_ITEM_COUNT) {
                 itemCount = getDatabaseItemCount()
             }
@@ -22,6 +22,8 @@ internal class PokemonPagingSource(
         } catch (e: Exception) {
             LoadResult.Error(e)
         }
+    }
+
 
     override fun getRefreshKey(state: PagingState<Int, PokemonData>): Int? {
         val anchorPosition = state.anchorPosition ?: return null

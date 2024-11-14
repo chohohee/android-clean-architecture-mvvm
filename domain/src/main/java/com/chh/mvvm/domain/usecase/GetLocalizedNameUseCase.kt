@@ -7,7 +7,5 @@ import javax.inject.Inject
 class GetLocalizedNameUseCase @Inject constructor() {
 
     operator fun invoke(names: List<Name>?): String? =
-        names?.find {
-            it.language == Locale.getDefault().language
-        }?.name
+        names?.find { it.language == Locale.getDefault().language }?.name
 }

@@ -4,6 +4,6 @@ plugins {
 
 dependencies {
     implementation(libs.inject)
-    // alternatively - without Android dependencies for tests
+    // without Android dependencies
     implementation(libs.androidx.paging.common)
 }

@@ -32,8 +32,7 @@ internal fun Project.configureKotlinAndroid() {
             getByName("release") {
                 isMinifyEnabled = false
                 proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
+                    getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
                 )
             }
         }
@@ -52,7 +51,7 @@ internal fun Project.configureKotlin() {
             freeCompilerArgs.set(
                 freeCompilerArgs.get() + listOf(
                     "-opt-in=androidx.paging.ExperimentalPagingApi",
-                    "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                    "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
                 )
             )
         }

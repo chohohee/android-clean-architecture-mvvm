@@ -4,6 +4,7 @@ import com.chh.mvvm.data.model.PokemonData
 import com.chh.mvvm.local.model.PokemonEntity
 
 object PokemonEntityMapper : EntityMapper<PokemonData, PokemonEntity> {
+
     override fun toEntity(data: PokemonData): PokemonEntity =
         PokemonEntity(
             name = data.name,
@@ -18,4 +19,5 @@ object PokemonEntityMapper : EntityMapper<PokemonData, PokemonEntity> {
             localizedBaseName = entity.localizedBaseName,
             types = entity.types
         )
+
 }

@@ -5,7 +5,6 @@ plugins {
 
 dependencies {
     implementation(projects.domain)
-
-    // alternatively - without Android dependencies for tests
+    // without Android dependencies
     implementation(libs.androidx.paging.common)
 }

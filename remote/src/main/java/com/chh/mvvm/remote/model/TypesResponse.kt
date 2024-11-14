@@ -8,9 +8,14 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class TypesResponse(
     @SerialName("slot") val slot: Int,
-    @SerialName("type") val type: com.chh.mvvm.remote.model.TypesResponse.TypeResponse,
+    @SerialName("type") val type: TypeResponse,
 ) : ResponseToDataMapper<TypeData> {
-    override fun toData(): TypeData = TypeData(name = this.type.name, url = this.type.url)
+
+    override fun toData(): TypeData =
+        TypeData(
+            name = this.type.name,
+            url = this.type.url
+        )
 
     @Serializable
     internal data class TypeResponse(

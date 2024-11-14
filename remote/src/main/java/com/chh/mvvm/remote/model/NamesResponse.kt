@@ -10,7 +10,12 @@ internal data class NamesResponse(
     @SerialName("language") val language: LanguageResponse,
     @SerialName("name") val name: String,
 ) : ResponseToDataMapper<NameData> {
-    override fun toData(): NameData = NameData(language = this.language.name, name = this.name)
+
+    override fun toData(): NameData =
+        NameData(
+            language = this.language.name,
+            name = this.name
+        )
 
     @Serializable
     internal data class LanguageResponse(

@@ -7,10 +7,10 @@ data class PokemonNameData(
     val name: String,
     val names: List<NameData>
 ) : DataToDomainMapper<PokemonName> {
+
     override fun toDomain(): PokemonName =
         PokemonName(
             name = this.name,
             names = this.names.map(NameData::toDomain)
         )
 }
-

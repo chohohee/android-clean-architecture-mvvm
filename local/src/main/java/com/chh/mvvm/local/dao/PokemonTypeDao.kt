@@ -10,7 +10,7 @@ import com.chh.mvvm.local.model.PokemonTypeEntity
 interface PokemonTypeDao {
 
     @Query("SELECT * FROM pokemon_type WHERE name = :name")
-    suspend fun getPokemonType (name: String): PokemonTypeEntity?
+    suspend fun getPokemonType(name: String): PokemonTypeEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPokemonType(name: PokemonTypeEntity)

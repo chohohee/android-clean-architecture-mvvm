@@ -10,6 +10,7 @@ data class PokemonData(
     val localizedBaseName: String? = null,
     val types: List<String>? = null,
 ) : DataToDomainMapper<Pokemon> {
+
     override fun toDomain(): Pokemon =
         Pokemon(
             name = this.name,

@@ -15,4 +15,5 @@ internal abstract class DataSourceModule {
     abstract fun bindPokemonRemoteDataSource(
         remote: DefaultPokemonRemoteDataSource
     ): PokemonRemoteDataSource
+
 }

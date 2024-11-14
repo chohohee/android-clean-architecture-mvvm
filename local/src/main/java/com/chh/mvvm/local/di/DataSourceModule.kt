@@ -17,4 +17,5 @@ internal abstract class DataSourceModule {
     abstract fun bindPokemonLocalDataSource(
         local: DefaultPokemonLocalDataSource
     ): PokemonLocalDataSource
+
 }

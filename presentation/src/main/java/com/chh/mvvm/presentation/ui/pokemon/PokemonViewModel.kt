@@ -67,8 +67,7 @@ class PokemonViewModel @Inject constructor(
         }
     }
 
-    fun onPokemonClicked(pokemon: PokemonModel) =
-        _navigationState.tryEmit(NavigationState.PokemonDetails(pokemon))
+    fun onPokemonClicked(pokemon: PokemonModel) = _navigationState.tryEmit(NavigationState.PokemonDetails(pokemon))
 
     sealed class NavigationState {
         data class PokemonDetails(val pokemon: PokemonModel) : NavigationState()

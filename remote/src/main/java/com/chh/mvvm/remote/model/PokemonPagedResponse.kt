@@ -12,6 +12,7 @@ internal data class PokemonPagedResponse(
     @SerialName("previous") val previous: String?,
     @SerialName("results") val results: List<PokemonResponse>
 ) : ResponseToDataMapper<PokemonPagedData> {
+
     override fun toData(): PokemonPagedData =
         PokemonPagedData(
             count = this.count,

@@ -13,4 +13,5 @@ data class PokemonModel(
 ) : Parcelable {
 
     fun unconfirmed(): Boolean = localizedName.isNullOrEmpty()
+
 }

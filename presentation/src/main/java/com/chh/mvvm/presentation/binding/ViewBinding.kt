@@ -60,11 +60,22 @@ fun loadThumbnailImage(imageView: AppCompatImageView, url: String, view: Constra
         .load(url)
         .listener(
             object : RequestListener<Drawable> {
-                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>,
+                    isFirstResource: Boolean
+                ): Boolean {
                     return false
                 }
 
-                override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>?, dataSource: DataSource, isFirstResource: Boolean): Boolean {
+                override fun onResourceReady(
+                    resource: Drawable,
+                    model: Any,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource,
+                    isFirstResource: Boolean
+                ): Boolean {
                     paletteGenerate(resource, view)
                     imageView.scaleX = 1f
                     imageView.scaleY = 1f
@@ -99,19 +110,35 @@ private fun createView(view: View, background: Int?, border: Int?) {
     view.background = shape
 }
 
-fun loadConfirmImage(imageView: AppCompatImageView, url: String, view: ConstraintLayout, thumbnailUrl: String) {
+fun loadConfirmImage(
+    imageView: AppCompatImageView,
+    url: String,
+    view: ConstraintLayout,
+    thumbnailUrl: String
+) {
     Glide.with(imageView)
         .load(url)
         .listener(
             object : RequestListener<Drawable> {
-                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>,
+                    isFirstResource: Boolean
+                ): Boolean {
                     CoroutineScope(Dispatchers.Main).launch {
                         loadThumbnailImage(imageView, thumbnailUrl, view)
                     }
                     return false
                 }
 
-                override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>?, dataSource: DataSource, isFirstResource: Boolean): Boolean {
+                override fun onResourceReady(
+                    resource: Drawable,
+                    model: Any,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource,
+                    isFirstResource: Boolean
+                ): Boolean {
                     paletteGenerate(resource, view)
                     imageView.scaleX = 3f
                     imageView.scaleY = 3f
@@ -122,16 +149,31 @@ fun loadConfirmImage(imageView: AppCompatImageView, url: String, view: Constrain
 }
 
 @BindingAdapter("image", "background", "name")
-fun AppCompatImageView.bindImage(thumbnailUrl: String, view: ConstraintLayout, textView: AppCompatTextView) {
+fun AppCompatImageView.bindImage(
+    thumbnailUrl: String,
+    view: ConstraintLayout,
+    textView: AppCompatTextView
+) {
     Glide.with(this)
         .load(thumbnailUrl)
         .listener(
             object : RequestListener<Drawable> {
-                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean,): Boolean {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>,
+                    isFirstResource: Boolean,
+                ): Boolean {
                     return false
                 }
 
-                override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>?, dataSource: DataSource, isFirstResource: Boolean): Boolean {
+                override fun onResourceReady(
+                    resource: Drawable,
+                    model: Any,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource,
+                    isFirstResource: Boolean
+                ): Boolean {
                     val drawable = resource as BitmapDrawable
                     val bitmap = drawable.bitmap
                     Palette.Builder(bitmap).generate { palette ->
@@ -184,7 +226,8 @@ fun LottieAnimationView.bindShow(uiState: UiState) {
 
 @BindingAdapter("type")
 fun MaterialCardView.bindType(type: PokemonTypeModel) {
-    val color = ContextCompat.getColor(this.context, PokemonResourceUtils.getTypeColor(type.baseName))
+    val color =
+        ContextCompat.getColor(this.context, PokemonResourceUtils.getTypeColor(type.baseName))
     val alpha = ColorUtils.setAlphaComponent(color, (256 * 0.7).toInt())
     setCardBackgroundColor(alpha)
     strokeColor = color
@@ -197,6 +240,5 @@ fun AppCompatImageView.bindVisibility(unconfirmed: Boolean) {
 
 @BindingAdapter("resource")
 fun AppCompatImageView.bindResource(type: String) {
-//    setBackgroundResource(PokemonResourceUtils.getTypeResource(type))
     setImageResource(PokemonResourceUtils.getTypeResource(type))
 }

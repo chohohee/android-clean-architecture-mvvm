@@ -8,6 +8,7 @@ data class PokemonTypeData(
     val name: String,
     val names: List<NameData>
 ) : DataToDomainMapper<PokemonType> {
+
     override fun toDomain(): PokemonType =
         PokemonType(
             id = this.id,

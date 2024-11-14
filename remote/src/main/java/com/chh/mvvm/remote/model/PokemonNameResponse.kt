@@ -11,6 +11,7 @@ internal data class PokemonNameResponse(
     @SerialName("name") val name: String,
     @SerialName("names") val names: List<NamesResponse>
 ) : ResponseToDataMapper<PokemonNameData> {
+
     override fun toData(): PokemonNameData =
         PokemonNameData(
             name = this.name,

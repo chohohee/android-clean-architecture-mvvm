@@ -42,7 +42,7 @@ class DetailViewModel @Inject constructor(
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5_000),
-                initialValue = null,
+                initialValue = null
             )
 
     private fun checkLoading() {

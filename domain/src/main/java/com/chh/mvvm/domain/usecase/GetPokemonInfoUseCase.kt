@@ -18,6 +18,7 @@ class GetPokemonInfoUseCase @Inject constructor(
     operator fun invoke(name: String): Flow<PokemonInfo> =
         flow {
             val info = pokemonRepository.getPokemonInfo(name)
+
             getPokemonType(info.types).collect { typeName ->
                 info.typeNames.add(typeName)
             }

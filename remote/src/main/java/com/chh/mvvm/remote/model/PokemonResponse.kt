@@ -10,5 +10,10 @@ internal data class PokemonResponse(
     @SerialName("name") val name: String,
     @SerialName("url") val url: String,
 ) : ResponseToDataMapper<PokemonData> {
-    override fun toData(): PokemonData = PokemonData(name = this.name, url = this.url)
+
+    override fun toData(): PokemonData =
+        PokemonData(
+            name = this.name,
+            url = this.url
+        )
 }

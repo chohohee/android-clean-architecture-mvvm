@@ -10,5 +10,6 @@ data class PokemonDetailModel(
     val types: List<PokemonTypeModel>
 ) {
 
-    fun getNo(): String = String.format(Locale.getDefault(),"#%03d", id)
+    fun getNo(): String = String.format(Locale.getDefault(), "#%03d", id)
+
 }

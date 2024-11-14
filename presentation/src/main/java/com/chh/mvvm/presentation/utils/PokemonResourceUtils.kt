@@ -3,6 +3,7 @@ package com.chh.mvvm.presentation.utils
 import com.chh.mvvm.presentation.R
 
 object PokemonResourceUtils {
+
     fun getTypeColor(type: String): Int {
         return when (type) {
             "normal" -> R.color.normal

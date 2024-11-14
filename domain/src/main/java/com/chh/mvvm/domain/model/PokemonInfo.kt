@@ -8,6 +8,7 @@ data class PokemonInfo(
     val types: List<Type>,
     val typeNames: MutableList<LocalizedName> = mutableListOf()
 ) {
+
     data class Type(
         var name: String,
         val url: String

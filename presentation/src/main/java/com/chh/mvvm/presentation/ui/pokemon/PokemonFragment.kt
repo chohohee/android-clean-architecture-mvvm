@@ -19,8 +19,7 @@ class PokemonFragment : BaseFragment<FragmentPokemonBinding>(R.layout.fragment_p
 
     private val pokemonAdapter by lazy { PokemonPagingAdapter(viewModel::onPokemonClicked) }
 
-    private val loadStateListener: (CombinedLoadStates) -> Unit =
-        { viewModel.onLoadStateUpdate(it) }
+    private val loadStateListener: (CombinedLoadStates) -> Unit = { viewModel.onLoadStateUpdate(it) }
 
     override fun initView() {
         with(binding) {
