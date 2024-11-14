@@ -2,6 +2,11 @@
 
 Clean Architecture MVVM Pattern in Android with Use Cases
 
+### Preview
+| US                           | KR                           | JP                           |
+|------------------------------|------------------------------|------------------------------|
+| ![Alt Text](/preview/en.gif) | ![Alt Text](/preview/ko.gif) | ![Alt Text](/preview/ja.gif) |
+
 ### Features
 - List of all Pokemon
 - View Pokemon card details
