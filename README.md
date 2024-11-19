@@ -7,6 +7,8 @@ Clean Architecture MVVM Pattern in Android with Use Cases
 |------------------------------|------------------------------|------------------------------|
 | ![Alt Text](/preview/en.gif) | ![Alt Text](/preview/ko.gif) | ![Alt Text](/preview/ja.gif) |
 
+[App Download](https://play.google.com/store/apps/details?id=com.chh.mvvm)
+
 ### Features
 - List of all Pokemon
 - View Pokemon card details
@@ -45,11 +47,9 @@ https://pokeapi.co/api/v2
 ```
 
 #### Endoint Used
-
-|Method | Endpoint | Usage |
-| ---- | ---- | --------------- |
-|GET| `/pokemon?offset={0}&limit={100}` | Get All Pokemon Information Paging |
-|GET| `/pokemon-species/{name}`         | Get localized Pokemon names        | 
-|GET| `/pokemon/{name}`                 | Get Pokemon attribute information  | 
-|GET| `/type/{1}`                       | Get localized Pokemon attributes   | 
-
+| Method | Endpoint                          | Usage                              |
+| ------ | --------------------------------- | ---------------------------------- |
+|GET     | `/pokemon?offset={0}&limit={100}` | Get All Pokemon Information Paging |
+|GET     | `/pokemon-species/{name}`         | Get localized Pokemon names        | 
+|GET     | `/pokemon/{name}`                 | Get Pokemon attribute information  | 
+|GET     | `/type/{1}`                       | Get localized Pokemon attributes   | 
