@@ -51,6 +51,6 @@ https://pokeapi.co/api/v2
 | Method | Endpoint                          | Usage                              |
 | ------ | --------------------------------- | ---------------------------------- |
 |GET     | `/pokemon?offset={0}&limit={100}` | Get All Pokemon Information Paging |
-|GET     | `/pokemon-species/{name}`         | Get localized Pokemon names        | 
-|GET     | `/pokemon/{name}`                 | Get Pokemon attribute information  | 
+|GET     | `/pokemon-species/{bulbasaur}`    | Get localized Pokemon names        | 
+|GET     | `/pokemon/{bulbasaur}`            | Get Pokemon attribute information  | 
 |GET     | `/type/{1}`                       | Get localized Pokemon attributes   | 
