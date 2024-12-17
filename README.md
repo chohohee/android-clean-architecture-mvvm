@@ -7,6 +7,9 @@ Clean Architecture MVVM Pattern in Android with Use Cases
 |------------------------------|------------------------------|------------------------------|
 | ![Alt Text](/preview/en.gif) | ![Alt Text](/preview/ko.gif) | ![Alt Text](/preview/ja.gif) |
 
+[![PokemonCard](https://img.shields.io/badge/Download-APK-0F9D58)](https://github.com/chohohee/android-clean-architecture-mvvm/raw/main/preview/app-release.apk)
+
+
 ### Features
 - List of all Pokemon
 - View Pokemon card details
